@@ -142,23 +142,31 @@ export default [{
     }]
   },
   {
-    type: 'text',
-    author: "them",
+    type: 'widget',
+    subType: 'email',
+    author: 'them',
     data: {
-      text: 'In which car detail you are interested in?',
-      quickReplies: [{
-        title: 'Engine',
-        payload: 'Engine'
-      }, {
-        title: 'Horsepower',
-        payload: 'Horsepower'
-      }, {
-        title: 'Gasoline',
-        payload: 'Gasoline'
-      }, {
-        title: 'Torque',
-        payload: 'Torque'
-      }]
+      text: 'Get notified of a reply here and via email:'
     }
   }
+  // {
+  //   type: 'text',
+  //   author: "them",
+  //   data: {
+  //     text: 'In which car detail you are interested in?',
+  //     quickReplies: [{
+  //       title: 'Engine',
+  //       payload: 'Engine'
+  //     }, {
+  //       title: 'Horsepower',
+  //       payload: 'Horsepower'
+  //     }, {
+  //       title: 'Gasoline',
+  //       payload: 'Gasoline'
+  //     }, {
+  //       title: 'Torque',
+  //       payload: 'Torque'
+  //     }]
+  //   }
+  // }
 ]
