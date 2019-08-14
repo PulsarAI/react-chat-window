@@ -55,9 +55,29 @@
   margin-right: 40px;
 }
 
-.sc-message--emoji {
-  font-size: 40px;
+.sc-message--quick-reply-container {
+  position: relative;
+  top: 70px;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  margin-bottom: 10px;
+  scrollbar-width: none;
 }
+
+.sc-message--quick-reply-container::-webkit-scrollbar {
+  display: none;
+}
+
+.sc-message--quick-reply {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: 1px solid #4e8cff;
+  color: #4e8cff;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 
 .sc-message--file {
   background: white;

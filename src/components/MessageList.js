@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+
 import Message from './Messages';
+import TypingIndicator from './TypingIndicator';
 
 class MessageList extends Component {
-
-  componentDidUpdate(_prevProps, _prevState) {
+  componentDidUpdate(prevProps, prevState) {
     this.scrollList.scrollTop = this.scrollList.scrollHeight;
   }
 
@@ -11,10 +12,11 @@ class MessageList extends Component {
     return (
       <div className="sc-message-list" ref={el => this.scrollList = el}>
         {this.props.messages.map((message, i) => {
-          return <Message message={message} key={i} />;
+          return <Message message={message} onCarouselClick={this.props.onCarouselClick} key={i} />
         })}
-      </div>);
+        {this.props.showTypingIndicator && <TypingIndicator />}
+      </div>)
   }
 }
 
-export default MessageList;
+export default MessageList

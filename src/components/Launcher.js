@@ -21,7 +21,7 @@ class Launcher extends Component {
     const isIncoming = (nextMessage || {}).author === 'them';
     const isNew = nextProps.messageList.length > this.props.messageList.length;
     if (isIncoming && isNew) {
-      this.playIncomingMessageSound();
+      this.playIncomingMessageSound()
     }
   }
 
@@ -49,17 +49,18 @@ class Launcher extends Component {
       <div id="sc-launcher">
         <div className={classList.join(' ')} onClick={this.handleClick.bind(this)}>
           <MessageCount count={this.props.newMessagesCount} isOpen={isOpen} />
-          <img className={'sc-open-icon'} src={launcherIconActive} />
-          <img className={'sc-closed-icon'} src={launcherIcon} />
+          <img className={"sc-open-icon"} src={launcherIconActive} />
+          <img className={"sc-closed-icon"} src={launcherIcon} />
         </div>
         <ChatWindow
           messageList={this.props.messageList}
           onUserInputSubmit={this.props.onMessageWasSent}
           onFilesSelected={this.props.onFilesSelected}
+          onCarouselClick={this.props.onCarouselClick}
           agentProfile={this.props.agentProfile}
           isOpen={isOpen}
           onClose={this.handleClick.bind(this)}
-          showEmoji={this.props.showEmoji}
+          showTypingIndicator={this.props.showTypingIndicator}
         />
       </div>
     );
@@ -67,28 +68,29 @@ class Launcher extends Component {
 }
 
 const MessageCount = (props) => {
-  if (props.count === 0 || props.isOpen === true) { return null; }
+  if (props.count === 0 || props.isOpen === true) { return null }
   return (
-    <div className={'sc-new-messages-count'}>
+    <div className={"sc-new-messages-count"}>
       {props.count}
     </div>
-  );
-};
+  )
+}
 
 Launcher.propTypes = {
   onMessageWasReceived: PropTypes.func,
   onMessageWasSent: PropTypes.func,
+  onCarouselClick: PropTypes.func,
   newMessagesCount: PropTypes.number,
   isOpen: PropTypes.bool,
   handleClick: PropTypes.func,
   messageList: PropTypes.arrayOf(PropTypes.object),
   mute: PropTypes.bool,
-  showEmoji: PropTypes.bool,
+  showTypingIndicator: PropTypes.bool
 };
 
 Launcher.defaultProps = {
   newMessagesCount: 0,
-  showEmoji: true
+  showTypingIndicator: false
 };
 
 export default Launcher;
