@@ -17,8 +17,10 @@ class Launcher extends Component {
     };
   }
 
-  componentDidMount () {
-    this.showWelcomeMessage()
+  componentDidMount() {
+    if(this.state.isOpen || this.props.isOpen) {
+      this.showWelcomeMessage()
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -45,20 +47,17 @@ class Launcher extends Component {
       }
     }
 
-    if (this.props.messageList.length === 0) {
+    if (this.props.messageList.length === 0 && this.state.messageList.length === 0) {
       this.setState({
         showTypingIndicator: true
       })
 
       setTimeout(() => {
-        if (this.props.messageList.length === 0) {
-  
-          this.setState({
-            messageList: [welcomeMessage],
-            showTypingIndicator: null
-          })
-        }
-      }, 2000)
+        this.setState({
+          messageList: [welcomeMessage],
+          showTypingIndicator: null
+        })
+      }, 1500)
     }
   }
 
@@ -70,9 +69,12 @@ class Launcher extends Component {
   handleClick() {
     if (this.props.handleClick !== undefined) {
       this.props.handleClick();
+      this.showWelcomeMessage();
     } else {
       this.setState({
         isOpen: !this.state.isOpen,
+      }, () => {
+        this.showWelcomeMessage();
       });
     }
   }
