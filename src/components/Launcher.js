@@ -43,7 +43,7 @@ class Launcher extends Component {
       type: 'text',
       author: "them",
       data: {
-        text: 'Hi there! Welcome to our website, how can we help? 🤓'
+        text: 'Hi there! Welcome to our website, how can we help?'
       }
     }
 
