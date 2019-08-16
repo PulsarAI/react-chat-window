@@ -11,8 +11,16 @@ class Launcher extends Component {
     super();
     this.state = {
       launcherIcon,
+      showTypingIndicator: null,
+      messageList: [],
       isOpen: false
     };
+  }
+
+  componentDidMount() {
+    if(this.state.isOpen || this.props.isOpen) {
+      this.showWelcomeMessage()
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -25,6 +33,34 @@ class Launcher extends Component {
     }
   }
 
+  /**
+   * showWelcomeMessage
+   * 
+   * Show welcome message if conversation is empty
+   */
+  showWelcomeMessage () {
+    const welcomeMessage = {
+      type: 'text',
+      author: "them",
+      data: {
+        text: 'Hi there! Welcome to our website, how can we help? 🤓'
+      }
+    }
+
+    if (this.props.messageList.length === 0 && this.state.messageList.length === 0) {
+      this.setState({
+        showTypingIndicator: true
+      })
+
+      setTimeout(() => {
+        this.setState({
+          messageList: [welcomeMessage],
+          showTypingIndicator: null
+        })
+      }, 1500)
+    }
+  }
+
   playIncomingMessageSound() {
     var audio = new Audio(incomingMessageSound);
     audio.play();
@@ -33,9 +69,12 @@ class Launcher extends Component {
   handleClick() {
     if (this.props.handleClick !== undefined) {
       this.props.handleClick();
+      this.showWelcomeMessage();
     } else {
       this.setState({
         isOpen: !this.state.isOpen,
+      }, () => {
+        this.showWelcomeMessage();
       });
     }
   }
@@ -45,6 +84,9 @@ class Launcher extends Component {
       'sc-launcher',
       (isOpen ? 'opened' : ''),
     ];
+    const messageList = this.props.messageList.length !== 0 ? this.props.messageList : this.state.messageList
+    const showTypingIndicator = this.state.showTypingIndicator === null ? this.props.showTypingIndicator : this.state.showTypingIndicator
+
     return (
       <div id="sc-launcher">
         <div className={classList.join(' ')} onClick={this.handleClick.bind(this)}>
@@ -53,14 +95,14 @@ class Launcher extends Component {
           <img className={"sc-closed-icon"} src={launcherIcon} />
         </div>
         <ChatWindow
-          messageList={this.props.messageList}
+          messageList={messageList}
           onUserInputSubmit={this.props.onMessageWasSent}
           onFilesSelected={this.props.onFilesSelected}
           onCarouselClick={this.props.onCarouselClick}
           agentProfile={this.props.agentProfile}
           isOpen={isOpen}
           onClose={this.handleClick.bind(this)}
-          showTypingIndicator={this.props.showTypingIndicator}
+          showTypingIndicator={showTypingIndicator}
         />
       </div>
     );
