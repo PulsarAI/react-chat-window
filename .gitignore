@@ -3,7 +3,7 @@ demo/dist/
 
 # Generated build files
 es/
-lib/
+# lib/
 umd/
 
 # Node
