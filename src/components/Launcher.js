@@ -11,8 +11,14 @@ class Launcher extends Component {
     super();
     this.state = {
       launcherIcon,
+      showTypingIndicator: null,
+      messageList: [],
       isOpen: false
     };
+  }
+
+  componentDidMount () {
+    this.showWelcomeMessage()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -22,6 +28,37 @@ class Launcher extends Component {
     const isNew = nextProps.messageList.length > this.props.messageList.length;
     if (isIncoming && isNew) {
       this.playIncomingMessageSound()
+    }
+  }
+
+  /**
+   * showWelcomeMessage
+   * 
+   * Show welcome message if conversation is empty
+   */
+  showWelcomeMessage () {
+    const welcomeMessage = {
+      type: 'text',
+      author: "them",
+      data: {
+        text: 'Hi there! Welcome to our website, how can we help? 🤓'
+      }
+    }
+
+    if (this.props.messageList.length === 0) {
+      this.setState({
+        showTypingIndicator: true
+      })
+
+      setTimeout(() => {
+        if (this.props.messageList.length === 0) {
+  
+          this.setState({
+            messageList: [welcomeMessage],
+            showTypingIndicator: null
+          })
+        }
+      }, 2000)
     }
   }
 
@@ -45,6 +82,9 @@ class Launcher extends Component {
       'sc-launcher',
       (isOpen ? 'opened' : ''),
     ];
+    const messageList = this.props.messageList.length !== 0 ? this.props.messageList : this.state.messageList
+    const showTypingIndicator = this.state.showTypingIndicator === null ? this.props.showTypingIndicator : this.state.showTypingIndicator
+
     return (
       <div id="sc-launcher">
         <div className={classList.join(' ')} onClick={this.handleClick.bind(this)}>
@@ -53,14 +93,14 @@ class Launcher extends Component {
           <img className={"sc-closed-icon"} src={launcherIcon} />
         </div>
         <ChatWindow
-          messageList={this.props.messageList}
+          messageList={messageList}
           onUserInputSubmit={this.props.onMessageWasSent}
           onFilesSelected={this.props.onFilesSelected}
           onCarouselClick={this.props.onCarouselClick}
           agentProfile={this.props.agentProfile}
           isOpen={isOpen}
           onClose={this.handleClick.bind(this)}
-          showTypingIndicator={this.props.showTypingIndicator}
+          showTypingIndicator={showTypingIndicator}
         />
       </div>
     );
