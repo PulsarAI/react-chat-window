@@ -23,6 +23,14 @@ class Launcher extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.isOpen !== prevProps.isOpen) {
+      const event = new CustomEvent('TOGGLE_WEBCHAT', { isOpen: this.props.isOpen })
+
+      window.parent.dispatchEvent(event)
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.mute) { return; }
     const nextMessage = nextProps.messageList[nextProps.messageList.length - 1];
