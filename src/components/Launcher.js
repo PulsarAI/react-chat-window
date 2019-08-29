@@ -25,6 +25,7 @@ class Launcher extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.isOpen !== prevProps.isOpen) {
+      console.log(this.props.isOpen, 'hey jo')
       const event = new CustomEvent('TOGGLE_WEBCHAT', { isOpen: this.props.isOpen })
 
       window.parent.dispatchEvent(event)
