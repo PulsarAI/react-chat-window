@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import ChatWindow from './ChatWindow';
 import launcherIcon from './../assets/logo-no-bg.svg';
 import incomingMessageSound from './../assets/sounds/notification.mp3';
@@ -18,27 +20,27 @@ class Launcher extends Component {
   }
 
   componentDidMount() {
-    if(this.state.isOpen || this.props.isOpen) {
+    if (this.state.isOpen || this.props.isOpen) {
       this.showWelcomeMessage()
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.isOpen !== prevProps.isOpen) {
-      // const event = new CustomEvent('TOGGLE_WEBCHAT', { detail: this.props.isOpen })
-      
-      // window.parent.dispatchEvent(event)
-      window.parent.postMessage('TOGGLE_WEBCHAT', '*')
-    } else if (this.state.isOpen !== prevState.isOpen) {
-      // const event = new CustomEvent('TOGGLE_WEBCHAT', { detail: this.state.isOpen })
+      const eventName = this.props.isOpen ? 'OPEN_WEBCHAT' : 'CLOSE_WEBCHAT'
 
-      // window.parent.dispatchEvent(event)
-      window.parent.postMessage('TOGGLE_WEBCHAT', '*')
+      window.parent.postMessage(eventName, '*');
+    } else if (this.state.isOpen !== prevState.isOpen) {
+      const eventName = this.state.isOpen ? 'OPEN_WEBCHAT' : 'CLOSE_WEBCHAT'
+
+      window.parent.postMessage(eventName, '*');
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.mute) { return; }
+    if (this.props.mute) {
+      return;
+    }
     const nextMessage = nextProps.messageList[nextProps.messageList.length - 1];
     const isIncoming = (nextMessage || {}).author === 'them';
     const isNew = nextProps.messageList.length > this.props.messageList.length;
@@ -52,7 +54,7 @@ class Launcher extends Component {
    * 
    * Show welcome message if conversation is empty
    */
-  showWelcomeMessage () {
+  showWelcomeMessage() {
     const welcomeMessage = {
       type: 'text',
       author: "them",
@@ -101,34 +103,79 @@ class Launcher extends Component {
     const messageList = this.props.messageList.length !== 0 ? this.props.messageList : this.state.messageList
     const showTypingIndicator = this.state.showTypingIndicator === null ? this.props.showTypingIndicator : this.state.showTypingIndicator
 
-    return (
-      <div id="sc-launcher">
-        <div className={classList.join(' ')} onClick={this.handleClick.bind(this)}>
-          <MessageCount count={this.props.newMessagesCount} isOpen={isOpen} />
-          <img className={"sc-open-icon"} src={launcherIconActive} />
-          <img className={"sc-closed-icon"} src={launcherIcon} />
-        </div>
-        <ChatWindow
-          messageList={messageList}
-          onUserInputSubmit={this.props.onMessageWasSent}
-          onFilesSelected={this.props.onFilesSelected}
-          onCarouselClick={this.props.onCarouselClick}
-          agentProfile={this.props.agentProfile}
-          isOpen={isOpen}
-          onClose={this.handleClick.bind(this)}
-          showTypingIndicator={showTypingIndicator}
-        />
-      </div>
+    return ( <
+      div id = "sc-launcher" >
+      <
+      div className = {
+        classList.join(' ')
+      }
+      onClick = {
+        this.handleClick.bind(this)
+      } >
+      <
+      MessageCount count = {
+        this.props.newMessagesCount
+      }
+      isOpen = {
+        isOpen
+      }
+      /> <
+      img className = {
+        "sc-open-icon"
+      }
+      src = {
+        launcherIconActive
+      }
+      /> <
+      img className = {
+        "sc-closed-icon"
+      }
+      src = {
+        launcherIcon
+      }
+      /> <
+      /div> <
+      ChatWindow messageList = {
+        messageList
+      }
+      onUserInputSubmit = {
+        this.props.onMessageWasSent
+      }
+      onFilesSelected = {
+        this.props.onFilesSelected
+      }
+      onCarouselClick = {
+        this.props.onCarouselClick
+      }
+      agentProfile = {
+        this.props.agentProfile
+      }
+      isOpen = {
+        isOpen
+      }
+      onClose = {
+        this.handleClick.bind(this)
+      }
+      showTypingIndicator = {
+        showTypingIndicator
+      }
+      /> <
+      /div>
     );
   }
 }
 
 const MessageCount = (props) => {
-  if (props.count === 0 || props.isOpen === true) { return null }
-  return (
-    <div className={"sc-new-messages-count"}>
-      {props.count}
-    </div>
+  if (props.count === 0 || props.isOpen === true) {
+    return null
+  }
+  return ( <
+    div className = {
+      "sc-new-messages-count"
+    } > {
+      props.count
+    } <
+    /div>
   )
 }
 
