@@ -25,13 +25,15 @@ class Launcher extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.isOpen !== prevProps.isOpen) {
-      const event = new CustomEvent('TOGGLE_WEBCHAT', { detail: this.props.isOpen })
-
-      window.parent.dispatchEvent(event)
+      // const event = new CustomEvent('TOGGLE_WEBCHAT', { detail: this.props.isOpen })
+      
+      // window.parent.dispatchEvent(event)
+      window.parent.postMessage('TOGGLE_WEBCHAT', '*')
     } else if (this.state.isOpen !== prevState.isOpen) {
-      const event = new CustomEvent('TOGGLE_WEBCHAT', { detail: this.state.isOpen })
+      // const event = new CustomEvent('TOGGLE_WEBCHAT', { detail: this.state.isOpen })
 
-      window.parent.dispatchEvent(event)
+      // window.parent.dispatchEvent(event)
+      window.parent.postMessage('TOGGLE_WEBCHAT', '*')
     }
   }
 
