@@ -103,64 +103,23 @@ class Launcher extends Component {
     const messageList = this.props.messageList.length !== 0 ? this.props.messageList : this.state.messageList
     const showTypingIndicator = this.state.showTypingIndicator === null ? this.props.showTypingIndicator : this.state.showTypingIndicator
 
-    return ( <
-      div id = "sc-launcher" >
-      <
-      div className = {
-        classList.join(' ')
-      }
-      onClick = {
-        this.handleClick.bind(this)
-      } >
-      <
-      MessageCount count = {
-        this.props.newMessagesCount
-      }
-      isOpen = {
-        isOpen
-      }
-      /> <
-      img className = {
-        "sc-open-icon"
-      }
-      src = {
-        launcherIconActive
-      }
-      /> <
-      img className = {
-        "sc-closed-icon"
-      }
-      src = {
-        launcherIcon
-      }
-      /> <
-      /div> <
-      ChatWindow messageList = {
-        messageList
-      }
-      onUserInputSubmit = {
-        this.props.onMessageWasSent
-      }
-      onFilesSelected = {
-        this.props.onFilesSelected
-      }
-      onCarouselClick = {
-        this.props.onCarouselClick
-      }
-      agentProfile = {
-        this.props.agentProfile
-      }
-      isOpen = {
-        isOpen
-      }
-      onClose = {
-        this.handleClick.bind(this)
-      }
-      showTypingIndicator = {
-        showTypingIndicator
-      }
-      /> <
-      /div>
+    return (
+      <div id = "sc-launcher">
+        <div className = { classList.join(' ') } onClick = { this.handleClick.bind(this) }>
+          <MessageCount count = { this.props.newMessagesCount } isOpen = { isOpen } />
+          <img className = { "sc-open-icon" } src = { launcherIconActive } />
+          <img className = { "sc-closed-icon" } src = { launcherIcon } />
+        </div>
+        <ChatWindow messageList = { messageList }
+          onUserInputSubmit = { this.props.onMessageWasSent }
+          onFilesSelected = { this.props.onFilesSelected }
+          onCarouselClick = { this.props.onCarouselClick }
+          agentProfile = { this.props.agentProfile }
+          isOpen = { isOpen }
+          onClose = { this.handleClick.bind(this) }
+          showTypingIndicator = { showTypingIndicator }
+        />
+      </div>
     );
   }
 }
@@ -169,13 +128,9 @@ const MessageCount = (props) => {
   if (props.count === 0 || props.isOpen === true) {
     return null
   }
-  return ( <
-    div className = {
-      "sc-new-messages-count"
-    } > {
-      props.count
-    } <
-    /div>
+  return ( <div className = { "sc-new-messages-count" }>
+    { props.count }
+    </div>
   )
 }
 
