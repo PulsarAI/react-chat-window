@@ -101,7 +101,7 @@
   fill: rgba(86, 88, 103, 0.3);
 }
 
-@media (max-width: 450px) {
+@media (max-width: 425px) {
   .sc-message {
     width: 80%;
   }
