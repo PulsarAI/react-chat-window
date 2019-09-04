@@ -1,0 +1,9 @@
+.sc-conversation {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: stretch;
+    padding: 24px;
+    cursor: pointer;
+}

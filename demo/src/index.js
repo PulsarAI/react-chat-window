@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {render} from 'react-dom'
 import {Launcher} from '../../src'
 import messageHistory from './messageHistory';
+import conversationHistory from './conversationHistory';
 import TestArea from './TestArea';
 import Header from './Header';
 import Footer from './Footer';
@@ -16,6 +17,7 @@ class Demo extends Component {
     super();
     this.state = {
       messageList: messageHistory,
+      conversationList: conversationHistory,
       newMessagesCount: 0,
       isOpen: true,
       isTyping: false
@@ -94,6 +96,7 @@ class Demo extends Component {
         onFilesSelected={this._onFilesSelected.bind(this)}
         onCarouselClick={this._onCarouselClick.bind(this)}
         messageList={this.state.messageList}
+        conversationList={this.state.conversationList}
         newMessagesCount={this.state.newMessagesCount}
         handleClick={this._handleClick.bind(this)}
         isOpen={this.state.isOpen}

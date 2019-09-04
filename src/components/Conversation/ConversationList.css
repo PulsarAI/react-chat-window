@@ -1,0 +1,6 @@
+.sc-conversation-list {
+    height: 80%;
+    overflow-y: auto;
+    background-color: white;
+    background-size: 100%;
+}

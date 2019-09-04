@@ -14,7 +14,7 @@ class Launcher extends Component {
     this.state = {
       launcherIcon,
       showTypingIndicator: null,
-      messageList: [],
+      conversationList: [],
       isOpen: false
     };
   }
@@ -41,9 +41,9 @@ class Launcher extends Component {
     if (this.props.mute) {
       return;
     }
-    const nextMessage = nextProps.messageList[nextProps.messageList.length - 1];
+    const nextMessage = nextProps.conversationList[nextProps.conversationList.length - 1];
     const isIncoming = (nextMessage || {}).author === 'them';
-    const isNew = nextProps.messageList.length > this.props.messageList.length;
+    const isNew = nextProps.conversationList.length > this.props.conversationList.length;
     if (isIncoming && isNew) {
       this.playIncomingMessageSound()
     }
@@ -63,18 +63,18 @@ class Launcher extends Component {
       }
     }
 
-    if (this.props.messageList.length === 0 && this.state.messageList.length === 0) {
-      this.setState({
-        showTypingIndicator: true
-      })
+    // if (this.props.conversationList.length === 0 && this.state.conversationList.length === 0) {
+    //   this.setState({
+    //     showTypingIndicator: true
+    //   })
 
-      setTimeout(() => {
-        this.setState({
-          messageList: [welcomeMessage],
-          showTypingIndicator: null
-        })
-      }, 1500)
-    }
+    //   setTimeout(() => {
+    //     this.setState({
+    //       conversationList: [welcomeMessage],
+    //       showTypingIndicator: null
+    //     })
+    //   }, 1500)
+    // }
   }
 
   playIncomingMessageSound() {
@@ -100,7 +100,7 @@ class Launcher extends Component {
       'sc-launcher',
       (isOpen ? 'opened' : ''),
     ];
-    const messageList = this.props.messageList.length !== 0 ? this.props.messageList : this.state.messageList
+    const conversationList = this.props.conversationList && this.props.conversationList.length !== 0 ? this.props.conversationList : this.state.conversationList
     const showTypingIndicator = this.state.showTypingIndicator === null ? this.props.showTypingIndicator : this.state.showTypingIndicator
 
     return (
@@ -110,7 +110,8 @@ class Launcher extends Component {
           <img className = { "sc-open-icon" } src = { launcherIconActive } />
           <img className = { "sc-closed-icon" } src = { launcherIcon } />
         </div>
-        <ChatWindow messageList = { messageList }
+        <ChatWindow 
+          conversationList = { conversationList }
           onUserInputSubmit = { this.props.onMessageWasSent }
           onFilesSelected = { this.props.onFilesSelected }
           onCarouselClick = { this.props.onCarouselClick }
@@ -141,7 +142,7 @@ Launcher.propTypes = {
   newMessagesCount: PropTypes.number,
   isOpen: PropTypes.bool,
   handleClick: PropTypes.func,
-  messageList: PropTypes.arrayOf(PropTypes.object),
+  conversationList: PropTypes.arrayOf(PropTypes.object),
   mute: PropTypes.bool,
   showTypingIndicator: PropTypes.bool
 };

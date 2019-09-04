@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import MessageList from './MessageList'
+import ConversationList from './Conversation/ConversationList'
 import UserInput from './UserInput'
 import Header from './Header'
 
@@ -31,12 +32,13 @@ class ChatWindow extends Component {
             imageUrl={this.props.agentProfile.imageUrl}
             onClose={this.props.onClose}
           />
-          <MessageList
+          <ConversationList conversationList={this.props.conversationList}/>
+          {/* <MessageList
             messages={messageList}
             onCarouselClick={this.props.onCarouselClick}
             imageUrl={this.props.agentProfile.imageUrl}
             showTypingIndicator={this.props.showTypingIndicator}
-          />
+          /> */}
           <UserInput
             onSubmit={this.onUserInputSubmit.bind(this)}
             onFilesSelected={this.onFilesSelected.bind(this)}
