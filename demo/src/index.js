@@ -30,7 +30,7 @@ class Demo extends Component {
       this.setState({
         showLoadingIndicator: false 
       })
-    }, 2000)
+    }, 500)
   }
 
   _onMessageWasSent(message) {

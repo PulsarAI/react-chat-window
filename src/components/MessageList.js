@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Message from './Messages';
 import TypingIndicator from './TypingIndicator';
 
-class MessageList extends Component {
-  componentDidUpdate(prevProps, prevState) {
-    this.scrollList.scrollTop = this.scrollList.scrollHeight;
-  }
+function MessageList ({ messages, onCarouselClick, showTypingIndicator }) {
+  const [element, setElement] = useState({})
 
-  render () {
-    return (
-      <div className="sc-message-list" ref={el => this.scrollList = el}>
-        {this.props.messages.map((message, i) => {
-          return <Message message={message} onCarouselClick={this.props.onCarouselClick} key={i} />
-        })}
-        {this.props.showTypingIndicator && <TypingIndicator />}
-      </div>)
-  }
+  useEffect(() => {
+    element.scrollTop = element.scrollHeight
+  })
+
+  return (
+    <div className="sc-message-list" ref={el => setElement(el)}>
+      {messages.map((message, i) => {
+        return <Message message={message} onCarouselClick={onCarouselClick} key={i} />
+      })}
+      {showTypingIndicator && <TypingIndicator />}
+    </div>)
 }
 
 export default MessageList
