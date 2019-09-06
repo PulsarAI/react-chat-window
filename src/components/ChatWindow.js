@@ -48,19 +48,30 @@ class ChatWindow extends Component {
 
     render() {
       const {
+        title,
         activeConversation
       } = this.state
+
+      const {
+        conversationList,
+        showLoadingIndicator,
+        showTypingIndicator,
+        agentProfile,
+        isOpen,
+        onCarouselClick,
+        onClose
+      } = this.props
 
       let messageList = this.props.messageList || this.state.messageList;
       let classList = [
         "sc-chat-window",
-        (this.props.isOpen ? "opened" : "closed")
+        (isOpen ? "opened" : "closed")
       ];
       return (
         <div className={classList.join(' ')}>
           <Header
-            teamName={this.state.title}
-            onClose={this.props.onClose}
+            teamName={title}
+            onClose={onClose}
             showBackButton={activeConversation}
             onBackButtonClick={this.onBackButtonClick}
           />
@@ -68,12 +79,16 @@ class ChatWindow extends Component {
             activeConversation ?
             (<MessageList
               messages={messageList}
-              onCarouselClick={this.props.onCarouselClick}
-              imageUrl={this.props.agentProfile.imageUrl}
-              showTypingIndicator={this.props.showTypingIndicator}
+              onCarouselClick={onCarouselClick}
+              imageUrl={agentProfile.imageUrl}
+              showTypingIndicator={showTypingIndicator}
             />)
             :
-            (<ConversationList conversationList={this.props.conversationList} onConversationClick={this.onConversationClick} />)
+            (<ConversationList
+              conversationList={conversationList}
+              onConversationClick={this.onConversationClick}
+              showLoadingIndicator={showLoadingIndicator}
+            />)
           }
           <UserInput
             onSubmit={this.onUserInputSubmit.bind(this)}
@@ -90,7 +105,9 @@ ChatWindow.propTypes = {
   onClose: PropTypes.func.isRequired,
   onFilesSelected: PropTypes.func,
   onUserInputSubmit: PropTypes.func.isRequired,
-  showTypingIndicator: PropTypes.bool
+  conversationList: PropTypes.arrayOf(PropTypes.object),
+  showTypingIndicator: PropTypes.bool,
+  showLoadingIndicator: PropTypes.bool
 }
 
 export default ChatWindow;

@@ -1,4 +1,5 @@
 .sc-conversation-list {
+    position: relative;
     height: 80%;
     overflow-y: auto;
     background-color: white;

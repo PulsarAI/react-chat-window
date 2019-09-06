@@ -118,6 +118,7 @@ class Launcher extends Component {
           agentProfile = { this.props.agentProfile }
           isOpen = { isOpen }
           onClose = { this.handleClick.bind(this) }
+          showLoadingIndicator = { this.props.showLoadingIndicator }
           showTypingIndicator = { showTypingIndicator }
         />
       </div>
@@ -144,11 +145,13 @@ Launcher.propTypes = {
   handleClick: PropTypes.func,
   conversationList: PropTypes.arrayOf(PropTypes.object),
   mute: PropTypes.bool,
+  showLoadingIndicator: PropTypes.bool,
   showTypingIndicator: PropTypes.bool
 };
 
 Launcher.defaultProps = {
   newMessagesCount: 0,
+  showLoadingIndicator: true,
   showTypingIndicator: false
 };
 

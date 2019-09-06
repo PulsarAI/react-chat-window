@@ -1,14 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import Conversation from './Conversation'
+import Loader from '../Loader'
 
 import './ConversationList.css'
 
-function ConversationList({ conversationList, onConversationClick }) {
-    const [conversations, setConversations] = useState(conversationList)
-
-    const convos = conversations.map((data, index) => <Conversation key={index} data={data} onConversationClick={onConversationClick}/>)
+function ConversationList({ showLoadingIndicator, conversationList, onConversationClick }) {
+    const convos = conversationList.map((data, index) => <Conversation key={index} data={data} onConversationClick={onConversationClick}/>)
     const data = {messageHistory: []}
+
+    if (showLoadingIndicator) {
+        return (
+            <div className='sc-loader-container'>
+                <Loader />
+            </div>
+        )
+    }
 
     return (
         <div className='sc-conversation-list'>

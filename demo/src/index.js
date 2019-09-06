@@ -20,8 +20,17 @@ class Demo extends Component {
       conversationList: conversationHistory,
       newMessagesCount: 0,
       isOpen: true,
-      isTyping: false
+      isTyping: false,
+      showLoadingIndicator: true
     };
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        showLoadingIndicator: false 
+      })
+    }, 2000)
   }
 
   _onMessageWasSent(message) {
@@ -101,6 +110,7 @@ class Demo extends Component {
         handleClick={this._handleClick.bind(this)}
         isOpen={this.state.isOpen}
         showTypingIndicator={this.state.isTyping}
+        showLoadingIndicator={this.state.showLoadingIndicator}
       />
       <img className="demo-monster-img" src={monsterImgUrl} />
       <Footer />
