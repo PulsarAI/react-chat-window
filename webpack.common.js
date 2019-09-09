@@ -5,11 +5,14 @@ const {
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+    devServer: {
+        contentBase: path.join(__dirname, 'demo', 'dist'),
+        compress: true,
+        port: 3000,
+        open: true
+    },
     entry: {
-        app: [
-            './src/index',
-            'webpack-hot-middleware/src?path=/__webpack_hmr&timeout=2000&overlay=false&reload=true'
-        ]
+        app: path.resolve(__dirname, 'src', 'index')
     },
     output: {
         filename: '[name].bundle.js',
@@ -35,7 +38,7 @@ module.exports = {
                 }
             }
         }, {
-            test: /\.scss$/,
+            test: /\.css$/,
             use: [{
                 loader: 'style-loader'
             }, {
@@ -43,20 +46,15 @@ module.exports = {
                 options: {
                     sourceMap: true
                 }
-            }, {
-                loader: 'sass-loader',
-                options: {
-                    sourceMap: true
-                }
+            }]
+        }, {
+            test: /\.(mp3|png|svg|jpe?g|gif)$/i,
+            use: [{
+                loader: 'file-loader',
             }]
         }]
     },
     plugins: [
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            title: 'Mern',
-            template: path.resolve(__dirname, 'src', 'index.html'),
-            filename: 'index.html'
-        })
+        new CleanWebpackPlugin()
     ]
 }

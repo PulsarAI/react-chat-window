@@ -30,3 +30,5 @@ class CarouselItem extends Component {
         )
     }
 }
+
+export default CarouselItem

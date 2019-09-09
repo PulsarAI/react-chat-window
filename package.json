@@ -11,7 +11,7 @@
     "umd"
   ],
   "scripts": {
-    "start": "webpack",
+    "start": "webpack --watch --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "clean": "rm -rf demo/dist",
     "lint": "eslint .",
@@ -28,17 +28,26 @@
     "socket.io-client": "2.0.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-transform-runtime": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
     "eslint": "^6.3.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
+    "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
     "pre-commit": "^1.2.2",
+    "style-loader": "^1.0.0",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.0",
     "webpack-merge": "^4.2.2"
   },
   "precommit": "build",

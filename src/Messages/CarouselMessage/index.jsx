@@ -21,10 +21,6 @@ const CarouselArrow = (props) => {
 }
 
 class CarouselMessage extends Component {
-    static defaultProps = {
-        data: []
-    }
-
     constructor (props) {
         super(props)
 
