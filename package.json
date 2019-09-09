@@ -14,6 +14,8 @@
     "build": "nwb build-react-component --copy-files",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "gh:publish": "nwb build-demo && gh-pages -d demo/dist"
   },
   "dependencies": {
@@ -26,6 +28,12 @@
     "socket.io-client": "2.0.3"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
     "nwb": "^0.23.0",
     "pre-commit": "^1.2.2"
   },

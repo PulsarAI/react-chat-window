@@ -1,4 +1,4 @@
-import monsterImgUrl from "./../assets/monster.png";
+import monsterImgUrl from '../assets/monster.png'
 
 // export default [{
 //     type: 'text',

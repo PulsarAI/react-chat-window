@@ -1,0 +1,6 @@
+/demo/**
+/lib/**
+/es/**
+/umd/**
+/node_modules/**
+!.eslintrc

@@ -9,4 +9,4 @@
 * [ ] Demo tested (`npm start`) to ensure it still functions as expected, and/or
 * [ ] New features are demonstrated to the demo (leave checkbox blank if not applicable)
 * [ ] Readme/docs are updated
-* [ ] `npm run lint` passes (`npm run lint -- --fix` will autofix where possible)
+* [ ] `npm run lint` passes (`npm run lint:fix` will autofix where possible)

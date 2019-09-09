@@ -5,9 +5,9 @@ import Loader from '../Loader'
 
 import './ConversationList.css'
 
-function ConversationList({ showLoadingIndicator, conversationList, onConversationClick }) {
+function ConversationList ({ showLoadingIndicator, conversationList, onConversationClick }) {
     const convos = conversationList.map((data, index) => <Conversation key={index} data={data} onConversationClick={onConversationClick}/>)
-    const data = {messageHistory: []}
+    const data = { messageHistory: [] }
 
     if (showLoadingIndicator) {
         return (
@@ -26,7 +26,7 @@ function ConversationList({ showLoadingIndicator, conversationList, onConversati
                 <button className='sc-conversation-list--new-btn' onClick={() => onConversationClick(data)}>New Conversation</button>
             </div>
         </div>
-    )   
+    )
 }
 
 export default ConversationList
