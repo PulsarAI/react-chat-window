@@ -10,7 +10,7 @@ module.exports = {
     /** The file name of the application's entry point */
     main: 'index.jsx',
     /** The name of the directory in which to emit compiled assets */
-    outDir: '/demo/dist',
+    outDir: '/dist',
     /** The base path for all projects assets (relative to the website root) */
     publicPath: '/',
     /** Whether to generate sourcemaps */

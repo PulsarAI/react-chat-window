@@ -1,20 +1,11 @@
 import React, { Component } from 'react'
-import { render } from 'react-dom'
-import Launcher from '../../src'
-import messageHistory from './messageHistory'
+import Launcher from './Launcher'
 import conversationHistory from './conversationHistory'
-import TestArea from './TestArea'
-import Header from './Header'
-import Footer from './Footer'
-import monsterImgUrl from '../assets/monster.png'
-import '../assets/styles'
 
-
-class Demo extends Component {
+class App extends Component {
     constructor () {
         super()
         this.state = {
-            messageList: messageHistory,
             conversationList: conversationHistory,
             newMessagesCount: 0,
             isOpen: true,
@@ -31,13 +22,13 @@ class Demo extends Component {
         }, 500)
     }
 
-    _onMessageWasSent (message) {
+    onMessageWasSent (message) {
         this.setState({
             messageList: [...this.state.messageList, message]
         })
     }
 
-    _onFilesSelected (fileList) {
+    onFilesSelected (fileList) {
         const objectURL = window.URL.createObjectURL(fileList[0])
         this.setState({
             messageList: [...this.state.messageList, {
@@ -51,7 +42,7 @@ class Demo extends Component {
         })
     }
 
-    _sendMessage (text) {
+    sendMessage (text) {
         if (text.length > 0) {
             const newMessagesCount = this.state.isOpen ? this.state.newMessagesCount : this.state.newMessagesCount + 1
             this.setState({
@@ -89,19 +80,13 @@ class Demo extends Component {
 
     render () {
         return <div>
-            <Header />
-            <TestArea
-                onMessage={this._sendMessage.bind(this)}
-                startTyping={this._startTyping.bind(this)}
-                stopTyping={this._stopTyping.bind(this)}
-            />
             <Launcher
                 agentProfile={{
                     teamName: 'react-chat-window',
                     imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
                 }}
-                onMessageWasSent={this._onMessageWasSent.bind(this)}
-                onFilesSelected={this._onFilesSelected.bind(this)}
+                onMessageWasSent={this.onMessageWasSent.bind(this)}
+                onFilesSelected={this.onFilesSelected.bind(this)}
                 onCarouselClick={this._onCarouselClick.bind(this)}
                 messageList={this.state.messageList}
                 conversationList={this.state.conversationList}
@@ -111,10 +96,8 @@ class Demo extends Component {
                 showTypingIndicator={this.state.isTyping}
                 showLoadingIndicator={this.state.showLoadingIndicator}
             />
-            <img className='demo-monster-img' src={monsterImgUrl} />
-            <Footer />
         </div>
     }
 }
 
-render(<Demo/>, document.querySelector('#demo'))
+export default App

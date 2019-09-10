@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     devServer: {
-        contentBase: path.join(__dirname, 'demo', 'dist'),
+        contentBase: path.join(__dirname, 'dist'),
         hot: true,
         compress: true,
         port: 3000,
@@ -14,12 +14,12 @@ module.exports = {
         open: true
     },
     entry: {
-        app: path.resolve(__dirname, 'src', 'App', 'index'),
+        app: path.resolve(__dirname, 'src', 'Launcher', 'index'),
         demo: path.resolve(__dirname, 'src', 'index')
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'demo', 'dist'),
+        path: path.resolve(__dirname, 'dist'),
         publicPath: '/'
     },
     resolve: {
