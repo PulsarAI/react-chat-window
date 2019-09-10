@@ -13,10 +13,9 @@
   "scripts": {
     "start": "webpack-dev-server --watch --config webpack.dev.js",
     "build": "npm run clean & webpack --config webpack.prod.js",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf lib",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "gh:publish": "nwb build-demo && gh-pages -d demo/dist"
+    "lint:fix": "eslint --fix ."
   },
   "dependencies": {
     "prop-types": "15.5.10",

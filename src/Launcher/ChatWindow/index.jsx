@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import MessageList from '../MessageList'
 import ConversationList from '../Conversation/ConversationList'
-import UserInput from '../UserInput/SendIcon'
+import UserInput from '../UserInput'
 import Header from '../Header'
 
 import './ChatWindow.css'
@@ -90,10 +90,12 @@ class ChatWindow extends Component {
                             showLoadingIndicator={showLoadingIndicator}
                         />)
                 }
-                <UserInput
-                    onSubmit={this.onUserInputSubmit.bind(this)}
-                    onFilesSelected={this.onFilesSelected.bind(this)}
-                />
+                {activeConversation && (
+                    <UserInput
+                        onSubmit={this.onUserInputSubmit.bind(this)}
+                        onFilesSelected={this.onFilesSelected.bind(this)}
+                    />
+                )}
             </div>
         )
     }
