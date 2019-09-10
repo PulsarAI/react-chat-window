@@ -2,7 +2,7 @@ import {
     spawn
 } from 'redux-saga/effects'
 
-import authSaga from './App/Auth/sagas'
+import authSaga from './App/sagas'
 
 function* sagas () {
     yield spawn(authSaga)

@@ -14,8 +14,8 @@ module.exports = {
         open: true
     },
     entry: {
-        launcher: path.resolve(__dirname, 'src', 'Launcher', 'index'),
-        app: path.resolve(__dirname, 'src', 'index')
+        app: path.resolve(__dirname, 'src', 'App', 'index'),
+        demo: path.resolve(__dirname, 'src', 'index')
     },
     output: {
         filename: '[name].bundle.js',
