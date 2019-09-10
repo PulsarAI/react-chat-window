@@ -7,11 +7,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'demo', 'dist'),
+        hot: true,
         compress: true,
         port: 3000,
+        inline: true,
         open: true
     },
     entry: {
+        launcher: path.resolve(__dirname, 'src', 'Launcher', 'index'),
         app: path.resolve(__dirname, 'src', 'index')
     },
     output: {
@@ -55,6 +58,10 @@ module.exports = {
         }]
     },
     plugins: [
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'src', 'index.html'),
+            filename: 'index.html'
+        })
     ]
 }

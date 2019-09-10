@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import Launcher from '../../src/index.jsx'
+import Launcher from '../../src'
 import messageHistory from './messageHistory'
 import conversationHistory from './conversationHistory'
 import TestArea from './TestArea'

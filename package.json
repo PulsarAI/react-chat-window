@@ -11,8 +11,8 @@
     "umd"
   ],
   "scripts": {
-    "start": "webpack --watch --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
+    "start": "webpack-dev-server --watch --config webpack.dev.js",
+    "build": "npm run clean & webpack --config webpack.prod.js",
     "clean": "rm -rf demo/dist",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
@@ -24,6 +24,7 @@
     "react-dom": "^16.9.0",
     "react-linkify": "^0.2.1",
     "react-redux": "^7.1.1",
+    "redux": "^4.0.4",
     "redux-saga": "^1.0.5",
     "socket.io-client": "2.0.3"
   },
